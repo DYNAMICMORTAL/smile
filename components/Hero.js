@@ -3,8 +3,12 @@ import Image from "next/image";
 import TestimonialsAvatars from "./TestimonialsAvatars";
 import config from "@/config";
 import Link from 'next/link';
+import { useState } from 'react';
+import Modal from './Modal';
 
 const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section className="max-w-7xl mx-auto bg-base-100 flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20 px-8 py-8 lg:py-20">
       <div className="flex flex-col gap-10 lg:gap-14 items-center justify-center text-center lg:text-left lg:items-start">
@@ -27,14 +31,13 @@ const Hero = () => {
         </Link>
 
         
-        <Link href="/dashboard">
         <button
           className="btn btn-primary btn-wide"
           style={{ backgroundColor: '#AA80FF' , color: '#fff' }}
+          onClick={() => setIsModalOpen(true)}
         >
           Connect to CRM
         </button>
-        </Link>
         </div>
 
       </div>
@@ -48,6 +51,7 @@ const Hero = () => {
           height={500}
         />
       </div>
+      <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </section>
   );
 };
