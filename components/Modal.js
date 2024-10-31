@@ -39,7 +39,7 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
               <Dialog.Panel className="relative w-full max-w-3xl h-full overflow-visible transform text-left align-middle shadow-xl transition-all rounded-xl bg-base-100 p-6 md:p-8">
                 <div className="flex justify-between items-center mb-4">
                   <Dialog.Title as="h2" className="font-semibold">
-                    I&apos;m a modal
+                    Integrate Existing CRMs
                   </Dialog.Title>
                   <button
                     className="btn btn-square btn-ghost btn-sm"
@@ -56,7 +56,20 @@ const Modal = ({ isModalOpen, setIsModalOpen }) => {
                   </button>
                 </div>
 
-                <section>And here is my content</section>
+                <section>
+                  <p>Select a CRM to integrate:</p>
+                  <div className="mt-4 space-y-2">
+                    <button className="btn btn-primary btn-block">
+                      Integrate Zoho CRM
+                    </button>
+                    <button className="btn btn-primary btn-block">
+                      Integrate Hubspot
+                    </button>
+                    <button className="btn btn-primary btn-block">
+                      Integrate Salesforce
+                    </button>
+                  </div>
+                </section>
               </Dialog.Panel>
             </Transition.Child>
           </div>
