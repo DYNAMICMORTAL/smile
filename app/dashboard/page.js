@@ -21,7 +21,9 @@ export default function Dashboard() {
     PreferredLanguage: '',
     ProductCategory: '',
     minAmount: 0,
-    maxAmount: 1000000
+    maxAmount: 1000000,
+    CityTier: '',
+    FestivalInterest: ''
   });
   
   const [error, setError] = useState(null);
@@ -75,6 +77,8 @@ export default function Dashboard() {
       Gender: [...new Set(data.map(item => item.Gender).filter(Boolean))],
       PreferredLanguage: [...new Set(data.map(item => item.PreferredLanguage).filter(Boolean))],
       ProductCategory: [...new Set(data.map(item => item.ProductCategory).filter(Boolean))],
+      CityTier: [...new Set(data.map(item => item.CityTier).filter(Boolean))],
+      FestivalInterest: [...new Set(data.map(item => item.FestivalInterest).filter(Boolean))]
     };
     setFilterOptions(options);
   };
@@ -87,7 +91,9 @@ export default function Dashboard() {
         (filters.Gender.length === 0 || filters.Gender.includes(item.Gender)) &&
         (filters.PreferredLanguage === '' || item.PreferredLanguage === filters.PreferredLanguage) &&
         (filters.ProductCategory === '' || item.ProductCategory === filters.ProductCategory) &&
-        (parseFloat(item.PurchaseAmount) >= filters.minAmount && parseFloat(item.PurchaseAmount) <= filters.maxAmount)
+        (parseFloat(item.PurchaseAmount) >= filters.minAmount && parseFloat(item.PurchaseAmount) <= filters.maxAmount) &&
+        (filters.CityTier === '' || item.CityTier === filters.CityTier) &&
+        (filters.FestivalInterest === '' || item.FestivalInterest === filters.FestivalInterest)
       );
     });
 
@@ -98,7 +104,9 @@ export default function Dashboard() {
       Gender: ${filters.Gender.join(', ') || "All"},
       Preferred Language: ${filters.PreferredLanguage || "All"},
       Purchase Category: ${filters.ProductCategory || "All"},
-      Purchase Amount: Min: ${filters.minAmount / 100000} Lakh / Max: ${filters.maxAmount / 100000} Lakh
+      Purchase Amount: Min: ${filters.minAmount / 100000} Lakh / Max: ${filters.maxAmount / 100000} Lakh,
+      City Tier: ${filters.CityTier || "All"},
+      Festival Interest: ${filters.FestivalInterest || "All"}
     `;
   };
 
@@ -132,7 +140,7 @@ export default function Dashboard() {
   };
 
   const handleFilterChange = (e) => {
-    const { nxame, value, type, checked } = e.target;
+    const { name, value, type, checked } = e.target;
     if (type === 'checkbox') {
       setFilters(prev => ({
         ...prev,
@@ -201,7 +209,9 @@ export default function Dashboard() {
         (filters.Gender.length === 0 || filters.Gender.includes(item.Gender)) &&
         (filters.PreferredLanguage === '' || item.PreferredLanguage === filters.PreferredLanguage) &&
         (filters.ProductCategory === '' || item.ProductCategory === filters.ProductCategory) &&
-        (parseFloat(item.PurchaseAmount) >= filters.minAmount && parseFloat(item.PurchaseAmount) <= filters.maxAmount)
+        (parseFloat(item.PurchaseAmount) >= filters.minAmount && parseFloat(item.PurchaseAmount) <= filters.maxAmount) &&
+        (filters.CityTier === '' || item.CityTier === filters.CityTier) &&
+        (filters.FestivalInterest === '' || item.FestivalInterest === filters.FestivalInterest)
       );
     });
   };
@@ -249,7 +259,9 @@ export default function Dashboard() {
         PurchaseAmount: item.PurchaseAmount,
         PurchaseDate: item.PurchaseDate,
         PreferredChannel: item.PreferredChannel,
-        PreferredLanguage: item.PreferredLanguage
+        PreferredLanguage: item.PreferredLanguage,
+        CityTier: item.CityTier,
+        FestivalInterest: item.FestivalInterest
       }));
 
       const prompt = `
@@ -317,7 +329,9 @@ export default function Dashboard() {
         PurchaseAmount: item.PurchaseAmount,
         PurchaseDate: item.PurchaseDate,
         PreferredChannel: item.PreferredChannel,
-        PreferredLanguage: item.PreferredLanguage
+        PreferredLanguage: item.PreferredLanguage,
+        CityTier: item.CityTier,
+        FestivalInterest: item.FestivalInterest
       }));
 
       const prompt = `

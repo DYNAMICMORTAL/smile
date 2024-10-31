@@ -1,9 +1,14 @@
 import fs from 'fs/promises';
 import path from 'path';
 import Papa from 'papaparse';
+import axios from 'axios';
+import connectMongo from '@/libs/mongoose';
+import Customer from '@/models/Customer';
 
 export default async function handler(req, res) {
   try {
+    await connectMongo();
+
     const filePath = path.join(process.cwd(), 'uploads', 'uploaded_data.csv');
     
     try {
@@ -27,8 +32,22 @@ export default async function handler(req, res) {
       throw new Error('No data found in file');
     }
 
-    console.log(`Successfully processed ${parsedData.length} records`);
-    res.status(200).json(parsedData);
+    // Custom filters based on Indian demographics, regional preferences, and socio-economic data
+    const filteredData = parsedData.filter(item => {
+      return (
+        (item.Region === 'India') &&
+        (item.CityTier || item.FestivalInterest || item.PreferredLanguage)
+      );
+    });
+
+    // Enrich customer profiles with external datasets
+    for (const customer of filteredData) {
+      const enrichmentData = await fetchEnrichmentData(customer);
+      customer.enrichmentData = enrichmentData;
+    }
+
+    console.log(`Successfully processed ${filteredData.length} records`);
+    res.status(200).json(filteredData);
 
   } catch (error) {
     console.error('Error processing data:', error);
@@ -37,4 +56,13 @@ export default async function handler(req, res) {
       error: error.message 
     });
   }
+}
+
+async function fetchEnrichmentData(customer) {
+  // Placeholder implementation for fetching enrichment data
+  return {
+    culturalEvents: ["Diwali", "Holi"],
+    languagePreferences: ["Hindi", "English"],
+    purchasingBehavior: ["Electronics", "Clothing"]
+  };
 }
