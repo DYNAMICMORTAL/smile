@@ -213,7 +213,10 @@ export default function Dashboard() {
         (filters.CityTier === '' || item.CityTier === filters.CityTier) &&
         (filters.FestivalInterest === '' || item.FestivalInterest === filters.FestivalInterest)
       );
-    });
+    }).map(item => ({
+      ...item,
+      enrichmentData: item.enrichmentData ? JSON.parse(item.enrichmentData) : {}
+    }));
   };
 
   const handleDownloadJSON = () => {
@@ -595,9 +598,9 @@ export default function Dashboard() {
                       <tbody className="bg-white divide-y divide-gray-200">
                         {getFilteredData().slice(0, 100).map((row, index) => (
                           <tr key={index}>
-                            {Object.values(row).map((value, cellIndex) => (
+                            {Object.entries(row).map(([key, value], cellIndex) => (
                               <td key={cellIndex} className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {value}
+                                {typeof value === 'object' ? JSON.stringify(value) : value}
                               </td>
                             ))}
                           </tr>

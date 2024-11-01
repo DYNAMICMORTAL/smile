@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
-import connectMongo from "@/libs/mongoose";
-import Customer from "@/models/Customer";
+import connectMongo from "../../../libs/mongo.mjs";
+import Customer from "../../../models/Customer";
 
 export async function POST(req) {
   await connectMongo();
