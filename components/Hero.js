@@ -21,7 +21,7 @@ const Hero = () => {
         </p>
         <div className="flex flex-row gap-4">
 
-        <Link href="/upload">
+        <Link href="/api/upload">
         <button
           className="btn btn-primary btn-wide"
           style={{ backgroundColor: '#AA80FF' , color: '#fff' }}
