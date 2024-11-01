@@ -33,11 +33,12 @@ export default function Upload() {
         setUploadSuccess(true);
         setTimeout(() => router.push('/dashboard'), 2000);
       } else {
-        throw new Error('Upload failed');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Upload failed');
       }
     } catch (error) {
       console.error('Error uploading file:', error);
-      alert('Failed to upload file. Please try again.');
+      alert(`Failed to upload file. ${error.message}`);
     } finally {
       setUploading(false);
     }
