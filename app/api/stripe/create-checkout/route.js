@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/libs/next-auth";
-import { createCheckout } from "@/libs/stripe";
+// import { authOptions } from "@/libs/next-auth";
+// import { createCheckout } from "@/libs/stripe";
 import connectMongo from "../../../../libs/mongo.mjs";
 import User from "../../../../models/User";
 
