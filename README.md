@@ -5,12 +5,6 @@ Welcome to the **CRM Segmentation SaaS**, a solution designed to enhance custome
 ## 📋 Table of Contents
 - [About the Project](#about-the-project)
 - [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ---
 
