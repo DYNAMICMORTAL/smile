@@ -14,7 +14,7 @@ Traditional CRM platforms often overlook key demographic and cultural distinctio
 ---
 
 ## 🚀 Features
-Our solution leverages advanced segmentation and data insights to provide the following unique features:
+The solution leverages advanced segmentation and data insights to provide the following unique features:
 
 1. **Data Enrichment**  
    Enrich CRM data with Indian-specific attributes, including cultural preferences, regional language, and socio-economic details, without duplicating existing CRM functionalities.
